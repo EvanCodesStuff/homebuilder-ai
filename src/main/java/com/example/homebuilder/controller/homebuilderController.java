@@ -15,7 +15,6 @@ public class homebuilderController {
     public String helloWorld(){
         return "hello";
     }
-
     @Autowired
     private HomeInventoryService homeInventoryService;
 
