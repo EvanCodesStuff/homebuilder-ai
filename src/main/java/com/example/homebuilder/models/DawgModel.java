@@ -2,6 +2,7 @@ package com.example.homebuilder.models;
 
 public class DawgModel {
 
+
     private String name;
     private String gender;
     private String breed;
