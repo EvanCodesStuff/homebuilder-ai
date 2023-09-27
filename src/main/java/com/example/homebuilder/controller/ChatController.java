@@ -28,7 +28,8 @@ public class ChatController {
         // create a request
         System.out.println(prompt);
         ChatRequest request = new ChatRequest(model, prompt);
-
+        request.setN(1);
+       // request.setTemperature(.5);
         // call the API
         ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
 

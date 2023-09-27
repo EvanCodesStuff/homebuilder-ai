@@ -11,6 +11,9 @@ public class Message {
         this.content = content;
     }
 
+    public Message(){
+    }
+
     public String getRole() {
         return role;
     }
