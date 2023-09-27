@@ -3,25 +3,25 @@ package com.example.homebuilder.models;
 public class HomeInventory {
 
 
-    public HomeInventory(Long homeId, String location, String insuranceCompanyName, String family) {
+    public HomeInventory(int homeId, String location, String insuranceCompanyName, String family) {
         this.homeId = homeId;
         this.location = location;
         this.insuranceCompanyName = insuranceCompanyName;
         this.family = family;
     }
 
-    private Long homeId;
+    private int homeId;
     private String location;
     private String insuranceCompanyName;
     private String family;
 
     // Getters and setters]
 
-    public Long getHomeId() {
+    public int getHomeId() {
         return homeId;
     }
 
-    public void setHomeId(Long homeId) {
+    public void setHomeId(int homeId) {
         this.homeId = homeId;
     }
 
