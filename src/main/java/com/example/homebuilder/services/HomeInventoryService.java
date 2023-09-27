@@ -8,7 +8,7 @@ import java.util.Map;
 @Service
 public class HomeInventoryService {
 
-    private static final Map<Long, HomeInventory> homeInventoryMap = new HashMap<>();
+    private static final Map<Integer, HomeInventory> homeInventoryMap = new HashMap<>();
 
     static {
         // Populate mock data
@@ -19,7 +19,7 @@ public class HomeInventoryService {
         homeInventoryMap.put(5L, new HomeInventory(5, "202 Cedar Ct", "JKL Insurance", "Wilson Family"));
     }
 
-    public HomeInventory getHomeInventory(Long homeId) {
+    public HomeInventory getHomeInventory(int homeId) {
         return homeInventoryMap.get(homeId);
     }
 }

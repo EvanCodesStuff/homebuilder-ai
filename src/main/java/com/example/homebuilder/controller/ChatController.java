@@ -26,6 +26,7 @@ public class ChatController {
     @GetMapping("/chat")
     public String chat(@RequestParam String prompt) {
         // create a request
+        System.out.println(prompt);
         ChatRequest request = new ChatRequest(model, prompt);
 
         // call the API

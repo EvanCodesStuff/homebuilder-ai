@@ -1,17 +1,17 @@
 package com.example.homebuilder.models;
 
 public class HomeRebuild {
-    private Long homeId;
+    private int homeId;
     private Boolean isCritical;
     private Boolean success;
     private String startTime;
     private String endTime;
 
-    public Long getHomeId() {
+    public int getHomeId() {
         return homeId;
     }
 
-    public void setHomeId(Long homeId) {
+    public void setHomeId(int homeId) {
         this.homeId = homeId;
     }
 

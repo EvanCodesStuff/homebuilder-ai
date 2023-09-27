@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class homebuilderController {
 
     @GetMapping("/")
-    public String helloWorld(){
+    public String helloWorld() {
         return "hello";
     }
+
     @Autowired
     private HomeInventoryService homeInventoryService;
+
+    @Autowired
     private HomeRebuildService homeRebuildService;
 
     @GetMapping("/{HOME_ID}/inventory")
@@ -33,21 +36,11 @@ public class homebuilderController {
     @GetMapping("/{HOME_ID}/rebuildStatus")
     public ResponseEntity<HomeRebuild> getRebuild(@PathVariable("HOME_ID") Long homeId) {
         HomeRebuild homeRebuild = homeRebuildService.getRebuild(homeId);
-        if (homeRebuild!= null) {
+        if (homeRebuild != null) {
             return ResponseEntity.ok(homeRebuild);
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
-
-
-    @Autowired
-    private ChatGptService chatGptService;
-
-
-    @GetMapping("/prompt")
-    public String callOpenAi(){
-        return chatGptService.sendMessageToChatGpt("Hello, ChatGPT!");
     }
 
 }

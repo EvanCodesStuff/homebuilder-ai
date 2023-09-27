@@ -10,13 +10,13 @@ import java.util.Random;
 @Service
 public class HomeRebuildService {
 
-        private static final Map<Long, HomeRebuild> homeRebuildMap = new HashMap<>();
+        private static final Map<Integer, HomeRebuild> homeRebuildMap = new HashMap<>();
 
     static {
         Random random = new Random();
 
         // Generate mock data and populate the map
-        for (long i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             HomeRebuild homeRebuild = new HomeRebuild();
 
             homeRebuild.setHomeId(i);
@@ -30,7 +30,7 @@ public class HomeRebuildService {
     }
 
 
-        public HomeRebuild getRebuild(Long homeId) {
+        public HomeRebuild getRebuild(int homeId) {
             return homeRebuildMap.get(homeId);
         }
 
