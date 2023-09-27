@@ -24,7 +24,7 @@ public class homebuilderController {
     private HomeRebuildService homeRebuildService;
 
     @GetMapping("/{HOME_ID}/inventory")
-    public ResponseEntity<HomeInventory> getHomeInventory(@PathVariable("HOME_ID") Long homeId) {
+    public ResponseEntity<HomeInventory> getHomeInventory(@PathVariable("HOME_ID") int homeId) {
         HomeInventory homeInventory = homeInventoryService.getHomeInventory(homeId);
         if (homeInventory != null) {
             return ResponseEntity.ok(homeInventory);
@@ -34,7 +34,7 @@ public class homebuilderController {
     }
 
     @GetMapping("/{HOME_ID}/rebuildStatus")
-    public ResponseEntity<HomeRebuild> getRebuild(@PathVariable("HOME_ID") Long homeId) {
+    public ResponseEntity<HomeRebuild> getRebuild(@PathVariable("HOME_ID") int homeId) {
         HomeRebuild homeRebuild = homeRebuildService.getRebuild(homeId);
         if (homeRebuild != null) {
             return ResponseEntity.ok(homeRebuild);
