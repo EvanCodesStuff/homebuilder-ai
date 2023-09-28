@@ -32,7 +32,7 @@ public class homebuilderController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    //TODO step 2 update controller with dog functionality
     @GetMapping("/{HOME_ID}/rebuildStatus")
     public ResponseEntity<HomeRebuild> getRebuild(@PathVariable("HOME_ID") int homeId) {
         HomeRebuild homeRebuild = homeRebuildService.getRebuild(homeId);

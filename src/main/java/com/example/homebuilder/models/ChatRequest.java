@@ -9,10 +9,11 @@ public class ChatRequest {
     private List<Message> messages;
     private int n;
 
-    public ChatRequest(String model, String prompt) {
+    public ChatRequest(String model, String prompt, String system) {
         this.model = model;
 
         this.messages = new ArrayList<>();
+        this.messages.add(new Message("System", system));
         this.messages.add(new Message("user", prompt));
     }
 
