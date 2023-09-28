@@ -12,11 +12,11 @@ public class DawgService {
 
     static {
         // Mock Dog Data
-        dawgServiceMap.put("1", new DawgModel("Fido", "Male", "Golden Retriever", "Small", "Yellow", "Smith Family"));
-        dawgServiceMap.put("2", new DawgModel("Snoopy","Male","Beagle","Small","White","Johnson Family"));
-        dawgServiceMap.put("3", new DawgModel("Hamlet","Female","Labrador","Medium","Yellow","Brown Family"));
-        dawgServiceMap.put("4", new DawgModel("Bridgette","Female","Poodle","Large","White","Davis Family"));
-        dawgServiceMap.put("5", new DawgModel("Trevor","Male","Maltese","Small","Gray","Wilson Family"));
+        dawgServiceMap.put("Smith", new DawgModel("Fido", "Male", "Golden Retriever", "Small", "Yellow", "Smith Family"));
+        dawgServiceMap.put("Johnson", new DawgModel("Snoopy","Male","Beagle","Small","White","Johnson Family"));
+        dawgServiceMap.put("Brown", new DawgModel("Hamlet","Female","Labrador","Medium","Yellow","Brown Family"));
+        dawgServiceMap.put("Davis", new DawgModel("Bridgette","Female","Poodle","Large","White","Davis Family"));
+        dawgServiceMap.put("Wilson", new DawgModel("Trevor","Male","Maltese","Small","Gray","Wilson Family"));
     }
 
     public DawgModel getDawgModel(String family) {
