@@ -7,6 +7,14 @@ public class HomeRebuild {
     private String startTime;
     private String endTime;
 
+    public HomeRebuild(int homeId, Boolean isCritical, Boolean success, String startTime, String endTime) {
+        this.homeId = homeId;
+        this.isCritical = isCritical;
+        this.success = success;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public int getHomeId() {
         return homeId;
     }

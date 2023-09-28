@@ -12,23 +12,14 @@ public class HomeRebuildService {
 
         private static final Map<Integer, HomeRebuild> homeRebuildMap = new HashMap<>();
 
-    static {
-        Random random = new Random();
 
-        // Generate mock data and populate the map
-        for (int i = 1; i <= 5; i++) {
-            HomeRebuild homeRebuild = new HomeRebuild();
-
-            homeRebuild.setHomeId(i);
-            homeRebuild.setCritical(random.nextBoolean());
-            homeRebuild.setSuccess(random.nextBoolean());
-            homeRebuild.setStartTime("2023-09-27T" + String.format("%02d:%02d:%02d", random.nextInt(24), random.nextInt(60), random.nextInt(60)));
-            homeRebuild.setEndTime("2023-09-28T" + String.format("%02d:%02d:%02d", random.nextInt(24), random.nextInt(60), random.nextInt(60)));
-
-            homeRebuildMap.put(i, homeRebuild);
+        static {
+            homeRebuildMap.put(1, new HomeRebuild(1,true,true,"2023-09-28T10:00:00Z","2023-09-28T14:30:00Z"));
+            homeRebuildMap.put(1, new HomeRebuild(2,true,true,"2023-09-29T15:45:00Z","2023-09-29T18:20:00Z"));
+            homeRebuildMap.put(1, new HomeRebuild(3,true,true,"2023-09-30T08:15:00Z","2023-09-30T11:00:00Z"));
+            homeRebuildMap.put(1, new HomeRebuild(4,true,true,"2023-10-01T13:30:00Z","2023-10-01T17:00:00Z"));
+            homeRebuildMap.put(1, new HomeRebuild(5,true,true,"2023-10-02T09:45:00Z","2023-10-02T12:10:00Z"));
         }
-    }
-
 
         public HomeRebuild getRebuild(int homeId) {
             return homeRebuildMap.get(homeId);
