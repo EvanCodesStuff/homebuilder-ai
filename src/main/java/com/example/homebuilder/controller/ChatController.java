@@ -50,7 +50,7 @@ public class ChatController {
     @PostMapping("/api/chatbot")
     public ResponseEntity<?> chatbotEndpoint(@RequestBody ChatbotRequest request) {
         // For simplicity, let's just return the same message prefixed with "Echo: "
-        String response = buildChat(String.valueOf(request));
+        String response = buildChat(String.valueOf(request.getMessage()));
         return ResponseEntity.ok(new ChatbotResponse(response));
     }
 
