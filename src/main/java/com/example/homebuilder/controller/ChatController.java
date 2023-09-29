@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ChatController {
 
+    @Autowired
     private HomeBuilderProps homeBuilderProps;
 
     @Qualifier("openaiRestTemplate")
@@ -29,6 +30,7 @@ public class ChatController {
     private String buildChat(String prompt){
         // create a request
         System.out.println(prompt);
+        System.out.println(homeBuilderProps.getSystem());
         ChatRequest request = new ChatRequest(model, prompt,homeBuilderProps.getSystem());
         request.setN(1);
 
