@@ -6,12 +6,12 @@ import com.example.homebuilder.properties.HomeBuilderProps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ChatController {
 
     private HomeBuilderProps homeBuilderProps;
@@ -42,4 +42,49 @@ public class ChatController {
         // return the first response
         return response.getChoices().get(0).getMessage().getContent();
     }
+
+
+
+
+
+
+    @PostMapping("/api/chatbot")
+    public ResponseEntity<?> chatbotEndpoint(@RequestBody ChatbotRequest request) {
+        // For simplicity, let's just return the same message prefixed with "Echo: "
+        String response = "Echo: " + request.getMessage();
+        return ResponseEntity.ok(new ChatbotResponse(response));
+    }
+
+    // Define the request object (this should match the structure sent by your JS code)
+    public static class ChatbotRequest {
+        private String message;
+
+        public ChatbotRequest() {}
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+    }
+
+    // Define the response object (this should match the expected structure in your JS code)
+    public static class ChatbotResponse {
+        private String response;
+
+        public ChatbotResponse(String response) {
+            this.response = response;
+        }
+
+        public String getResponse() {
+            return response;
+        }
+
+        public void setResponse(String response) {
+            this.response = response;
+        }
+    }
 }
+
