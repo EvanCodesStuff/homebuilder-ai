@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ChatController {
 
+    @Autowired
     private HomeBuilderProps homeBuilderProps;
 
     @Qualifier("openaiRestTemplate")
@@ -26,10 +27,10 @@ public class ChatController {
     @Value("${openai.api.url}")
     private String apiUrl;
 
-    @GetMapping("/chat")//TODO step 3 create UI interface for chat bot
-    public String chat(@RequestParam String prompt) {
+    private String buildChat(String prompt){
         // create a request
         System.out.println(prompt);
+        System.out.println(homeBuilderProps.getSystem());
         ChatRequest request = new ChatRequest(model, prompt,homeBuilderProps.getSystem());
         request.setN(1);
 
@@ -51,7 +52,7 @@ public class ChatController {
     @PostMapping("/api/chatbot")
     public ResponseEntity<?> chatbotEndpoint(@RequestBody ChatbotRequest request) {
         // For simplicity, let's just return the same message prefixed with "Echo: "
-        String response = "Echo: " + request.getMessage();
+        String response = buildChat(String.valueOf(request.getMessage()));
         return ResponseEntity.ok(new ChatbotResponse(response));
     }
 
