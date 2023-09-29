@@ -13,7 +13,7 @@ public class ChatRequest {
         this.model = model;
 
         this.messages = new ArrayList<>();
-        this.messages.add(new Message("System", system));
+        this.messages.add(new Message("system", system));
         this.messages.add(new Message("user", prompt));
     }
 
