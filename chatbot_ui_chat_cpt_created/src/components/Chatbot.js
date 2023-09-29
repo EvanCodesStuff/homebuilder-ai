@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';  // <- Import useRef
 import './Chatbot.css';
 
 function Chatbot() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState("");
+    const sendButtonRef = useRef(null);  // <- Create a reference for the button
 
     const handleSendMessage = () => {
         if (userInput) {
@@ -27,6 +28,13 @@ function Chatbot() {
         }
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevents default form submission behavior
+            sendButtonRef.current.click();  // <- Trigger the button's click event
+        }
+    };
+
     return (
         <div className="chatbox">
             <div className="chat-header">Chatbot</div>
@@ -42,9 +50,10 @@ function Chatbot() {
                     type="text"
                     value={userInput}
                     onChange={e => setUserInput(e.target.value)}
+                    onKeyPress={handleKeyPress} // Add the keypress handler
                     placeholder="Type your message..."
                 />
-                <button onClick={handleSendMessage}>Send</button>
+                <button ref={sendButtonRef} onClick={handleSendMessage}>Send</button>  {/* <- Attach the reference to the button */}
             </div>
         </div>
     );
