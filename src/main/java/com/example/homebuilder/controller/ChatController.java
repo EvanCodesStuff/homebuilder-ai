@@ -43,6 +43,22 @@ public class ChatController {
         return response.getChoices().get(0).getMessage().getContent();
     }
 
+    private String buildChat(String prompt){
+        // create a request
+        System.out.println(prompt);
+        ChatRequest request = new ChatRequest(model, prompt,homeBuilderProps.getSystem());
+        request.setN(1);
+
+        ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
+
+        if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
+            return "No response";
+        }
+
+        // return the first response
+        return response.getChoices().get(0).getMessage().getContent();
+    }
+
 
 
 
@@ -51,7 +67,7 @@ public class ChatController {
     @PostMapping("/api/chatbot")
     public ResponseEntity<?> chatbotEndpoint(@RequestBody ChatbotRequest request) {
         // For simplicity, let's just return the same message prefixed with "Echo: "
-        String response = "Echo: " + request.getMessage();
+        String response = buildChat(String.valueOf(request));
         return ResponseEntity.ok(new ChatbotResponse(response));
     }
 
