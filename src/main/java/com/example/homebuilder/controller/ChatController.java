@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ChatController {
+
     @Autowired
     private HomeBuilderProps homeBuilderProps;
 
@@ -99,9 +101,11 @@ public class ChatController {
 
     @GetMapping("/chat")//TODO step 3 create UI interface for chat bot
     public String chat(@RequestParam String prompt) {
+    private String buildChat(String prompt){
         // create a request
         System.out.println(prompt);
-        ChatRequest request = new ChatRequest(model, prompt,system);
+        System.out.println(homeBuilderProps.getSystem());
+        ChatRequest request = new ChatRequest(model, prompt,homeBuilderProps.getSystem());
         request.setN(1);
 
         ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
@@ -112,5 +116,49 @@ public class ChatController {
 
         // return the first response
         return response.getChoices().get(0).getMessage().getContent();
+    }
+
+
+
+
+
+
+    @PostMapping("/api/chatbot")
+    public ResponseEntity<?> chatbotEndpoint(@RequestBody ChatbotRequest request) {
+        // For simplicity, let's just return the same message prefixed with "Echo: "
+        String response = buildChat(String.valueOf(request.getMessage()));
+        return ResponseEntity.ok(new ChatbotResponse(response));
+    }
+
+    // Define the request object (this should match the structure sent by your JS code)
+    public static class ChatbotRequest {
+        private String message;
+
+        public ChatbotRequest() {}
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+    }
+
+    // Define the response object (this should match the expected structure in your JS code)
+    public static class ChatbotResponse {
+        private String response;
+
+        public ChatbotResponse(String response) {
+            this.response = response;
+        }
+
+        public String getResponse() {
+            return response;
+        }
+
+        public void setResponse(String response) {
+            this.response = response;
+        }
     }
 }
